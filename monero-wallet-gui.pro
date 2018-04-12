@@ -259,7 +259,7 @@ win32 {
 linux {
     CONFIG(static) {
         message("using static libraries")
-        LIBS+= -Wl,-Bstatic    
+        LIBS+= -Wl,-Bstatic -ldl
         QMAKE_LFLAGS += -static-libgcc -static-libstdc++
    #     contains(QT_ARCH, x86_64) {
             LIBS+= -lunbound
