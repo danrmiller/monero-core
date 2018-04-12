@@ -281,6 +281,7 @@ linux {
         -lssl \
         -llmdb \
         -lcrypto
+        -ldl
 
     if(!android) {
         LIBS+= \
