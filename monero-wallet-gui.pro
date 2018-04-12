@@ -259,13 +259,13 @@ win32 {
 linux {
     CONFIG(static) {
         message("using static libraries")
-        LIBS+= -Wl,-Bstatic -ldl
+        LIBS+= -Wl,-Bstatic,-ldl
         QMAKE_LFLAGS += -static-libgcc -static-libstdc++
    #     contains(QT_ARCH, x86_64) {
             LIBS+= -lunbound
    #     }
     } else {
-      # On some distro's we need to add dynload
+      # On some distros we need to add dynload
       LIBS+= -ldl
     }
 
@@ -280,13 +280,14 @@ linux {
         -lboost_program_options \
         -lssl \
         -llmdb \
-        -lcrypto
+        -lcrypto \
         -ldl
 
     if(!android) {
         LIBS+= \
             -Wl,-Bdynamic \
-            -lGL
+            -lGL \
+            -ldl
     }
     # currently monero has an issue with "static" build and linunwind-dev,
     # so we link libunwind-dev only for non-Ubuntu distros
@@ -297,7 +298,7 @@ linux {
         LIBS += -Wl,-Bdynamic -lunwind
     }
 
-    QMAKE_LFLAGS += -pie -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack
+    QMAKE_LFLAGS += -pie -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack,-ldl
 }
 
 macx {
