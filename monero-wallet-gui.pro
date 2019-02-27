@@ -8,6 +8,7 @@ TEMPLATE = app
 QT += qml quick widgets
 
 WALLET_ROOT=$$PWD/monero
+PKGCONFIG += openssl
 
 CONFIG += c++11 link_pkgconfig
 packagesExist(hidapi-libusb) {
